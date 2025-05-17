@@ -1,5 +1,5 @@
 {
-  "name": "ai-code-review",
+  "name": "pf-ai-code-review",
   "version": "1.0.0",
   "description": "AI代码评审助手 - 基于Mastra框架的代码评审工具",
   "type": "module",
