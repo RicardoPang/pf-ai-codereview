@@ -2,6 +2,8 @@ import { Mastra } from '@mastra/core';
 import { createLogger } from '@mastra/core';
 // 导入代码评审Agent
 import { codeReviewAgent } from './agents';
+// 导入存储模块
+import { LibSQLStore } from '@mastra/libsql';
 
 /**
  * Mastra实例配置
@@ -23,6 +25,11 @@ export const mastra = new Mastra({
       credentials: true,
     },
   },
+
+  // 配置存储
+  storage: new LibSQLStore({
+    url: 'file:../mastra.db', // 使用本地文件存储
+  }),
 
   // 配置日志
   logger: createLogger({

@@ -1,0 +1,39 @@
+{
+  "name": "ai-code-review",
+  "version": "1.0.0",
+  "description": "AI代码评审助手 - 基于Mastra框架的代码评审工具",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "mastra dev",
+    "start": "mastra start",
+    "build": "mastra build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "ai",
+    "code-review",
+    "mastra"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ai-sdk/openai": "*",
+    "@mastra/core": "*",
+    "@mastra/libsql": "^0.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "mastra": "^0.6.3",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2",
+    "vitest": "^0.34.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
