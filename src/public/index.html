@@ -1,90 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI代码评审工具</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <header class="glass-panel">
-      <h1><i class="fas fa-code-branch"></i> AI代码评审工具</h1>
-      <p>使用AI技术对代码进行专业评审，提供改进建议和最佳实践指导</p>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI代码评审工具</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="glass-panel">
+        <h1><i class="fas fa-code-branch"></i> AI代码评审工具</h1>
+        <p>使用AI技术对代码进行专业评审，提供改进建议和最佳实践指导</p>
+      </header>
 
-    <main>
-      <div class="glass-panel code-input-panel">
-        <h2>提交代码</h2>
-        <div class="form-group">
-          <label for="language">编程语言:</label>
-          <select id="language" class="glass-input">
-            <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="csharp">C#</option>
-            <option value="cpp">C++</option>
-            <option value="php">PHP</option>
-            <option value="ruby">Ruby</option>
-            <option value="go">Go</option>
-            <option value="swift">Swift</option>
-            <option value="typescript">TypeScript</option>
-          </select>
+      <main>
+        <div class="glass-panel code-input-panel">
+          <h2>提交代码</h2>
+          <div class="form-group">
+            <label for="language">编程语言:</label>
+            <select id="language" class="glass-input">
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="java">Java</option>
+              <option value="csharp">C#</option>
+              <option value="cpp">C++</option>
+              <option value="php">PHP</option>
+              <option value="ruby">Ruby</option>
+              <option value="go">Go</option>
+              <option value="swift">Swift</option>
+              <option value="typescript">TypeScript</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="context">代码上下文或用途 (可选):</label>
+            <input
+              type="text"
+              id="context"
+              class="glass-input"
+              placeholder="例如：这是一个用于处理用户认证的函数"
+            />
+          </div>
+          <div class="form-group">
+            <label for="code">代码:</label>
+            <textarea
+              id="code"
+              class="glass-input code-area"
+              placeholder="在此粘贴您的代码..."
+            ></textarea>
+          </div>
+          <button id="submit-btn" class="glass-btn">
+            <i class="fas fa-search"></i> 开始评审
+          </button>
         </div>
-        <div class="form-group">
-          <label for="context">代码上下文或用途 (可选):</label>
-          <input type="text" id="context" class="glass-input" placeholder="例如：这是一个用于处理用户认证的函数">
-        </div>
-        <div class="form-group">
-          <label for="code">代码:</label>
-          <textarea id="code" class="glass-input code-area" placeholder="在此粘贴您的代码..."></textarea>
-        </div>
-        <button id="submit-btn" class="glass-btn"><i class="fas fa-search"></i> 开始评审</button>
-      </div>
 
-      <div id="results-panel" class="glass-panel results-panel hidden">
-        <div class="results-header">
-          <h2>评审结果</h2>
-          <div class="score-container">
-            <span>质量评分:</span>
-            <div id="quality-score" class="quality-score">--</div>
+        <div id="results-panel" class="glass-panel results-panel hidden">
+          <div class="results-header">
+            <h2>评审结果</h2>
+            <div class="score-container">
+              <span>质量评分:</span>
+              <div id="quality-score" class="quality-score">--</div>
+            </div>
+          </div>
+
+          <div class="loading-container hidden" id="loading">
+            <div class="loading-spinner"></div>
+            <p>AI正在评审您的代码，请稍候...</p>
+          </div>
+
+          <div id="results-content">
+            <div class="feedback-section">
+              <h3>详细反馈</h3>
+              <div id="feedback" class="feedback-content"></div>
+            </div>
+
+            <div class="suggestions-section">
+              <h3>改进建议</h3>
+              <ul id="suggestions-list" class="suggestions-list"></ul>
+            </div>
           </div>
         </div>
-        
-        <div class="loading-container hidden" id="loading">
-          <div class="loading-spinner"></div>
-          <p>AI正在评审您的代码，请稍候...</p>
-        </div>
-        
-        <div id="results-content">
-          <div class="feedback-section">
-            <h3>详细反馈</h3>
-            <div id="feedback" class="feedback-content"></div>
-          </div>
-          
-          <div class="suggestions-section">
-            <h3>改进建议</h3>
-            <ul id="suggestions-list" class="suggestions-list"></ul>
-          </div>
-        </div>
-      </div>
-    </main>
+      </main>
 
-    <footer class="glass-panel">
-      <p>&copy; 2025 AI代码评审工具 | 使用 Mastra AI 和 OpenAI 技术驱动</p>
-    </footer>
-  </div>
-
-  <div id="toast" class="toast hidden">
-    <div class="toast-content">
-      <i id="toast-icon" class="fas"></i>
-      <span id="toast-message"></span>
+      <footer class="glass-panel">
+        <p>&copy; 2025 AI代码评审工具 | 使用 Mastra AI 和 OpenAI 技术驱动</p>
+      </footer>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="app.js"></script>
-</body>
+    <div id="toast" class="toast hidden">
+      <div class="toast-content">
+        <i id="toast-icon" class="fas"></i>
+        <span id="toast-message"></span>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

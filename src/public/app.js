@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       // 调用代码评审API
       const response = await reviewCode(code, language, context);
-      
+
       // 显示评审结果
       displayResults(response);
     } catch (error) {
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 显示改进建议
     suggestionsList.innerHTML = '';
-    results.suggestions.forEach(suggestion => {
+    results.suggestions.forEach((suggestion) => {
       const li = document.createElement('li');
       li.textContent = suggestion;
       suggestionsList.appendChild(li);
